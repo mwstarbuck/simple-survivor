@@ -1,0 +1,23 @@
+.tile {
+    display: inline-flex;
+    background-color: green;
+}
+.grass {
+    background-color: green;
+}
+
+.rock {
+    background-image: url('/tiles/rock.png')
+}
+.tree{
+    background-image: url('/tiles/tree.png')
+}
+.water {
+     background-color: rgb(0, 102, 128);
+}
+.fog {
+    background-color:   black;
+}
+.base {
+    background-image: url('/tiles/ranger.png')
+}
