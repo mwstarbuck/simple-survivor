@@ -22,9 +22,9 @@ export default function handleMovement(player) {
         switch (true) {
             case nextTile.terrain < 10:
                 return speed - 1
-            case nextTile.terrain <= 11:
+            case nextTile.terrain < 11:
                 return speed - 3
-            case nextTile.terrrain <= 13:
+            case nextTile.terrrain < 12:
                 return speed - 2
             case nextTile.terrain === 13:
                 return speed - 3
@@ -50,7 +50,7 @@ export default function handleMovement(player) {
     // }
 
     function observeImpassable(nextTile) {
-        return nextTile.terrain < 15 //controls tiles player can move through >=7 allows free movement
+        return nextTile.terrain < 20 //controls tiles player can move through >=7 allows free movement
     }
 
 
@@ -84,23 +84,23 @@ export default function handleMovement(player) {
     function attemptMove(direction) {
         const oldPos = store.getState().player.position
         const newPos = getNewPosition(oldPos, direction)
-        let oldSpeed = store.getState().player.speed
-        const tiles = store.getState().map.tiles
-        const y = newPos[1] / SPRITE_SIZE
-        const x = newPos[0] / SPRITE_SIZE
-        const nextTile = tiles[y][x]
+        if (observeBoundaries(oldPos, newPos)) {
+            let oldSpeed = store.getState().player.speed
+            const tiles = store.getState().map.tiles
+            const y = newPos[1] / SPRITE_SIZE
+            const x = newPos[0] / SPRITE_SIZE
+            const nextTile = tiles[y][x]
 
-        const currentSpeed = handleSpeedAndMove(oldSpeed, nextTile) //new
+            const currentSpeed = handleSpeedAndMove(oldSpeed, nextTile) //new
 
-
-        //runs observeBoundaries & observeImpassable functions which return BOOL    
-        if (observeBoundaries(oldPos, newPos) && observeImpassable(nextTile) && currentSpeed >= 0) {
-            console.log(oldSpeed) //new
-            console.log(currentSpeed)
-            dispatchMove(newPos, currentSpeed)
-            console.log(newPos)
+            //runs observeBoundaries & observeImpassable functions which return BOOL    
+            if (observeImpassable(nextTile) && currentSpeed >= 0) {
+                // console.log(oldSpeed) //new
+                // console.log(currentSpeed)
+                dispatchMove(newPos, currentSpeed)
+                console.log(nextTile)
+            }
         }
-
     }
     //converts key press number into cardinal direction for movement handling
     function handleKeyDown(e) {

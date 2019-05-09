@@ -8,9 +8,9 @@ function getTileSprite(type) {
     switch (true) {
         case type < 10:
             return 'grass'
-        case type <= 11:
+        case type < 12:
             return 'rock'
-        case type <= 13:
+        case type < 13:
             return 'tree'  //time: 22:00 in video 2
         case type === 13:
             return 'water'

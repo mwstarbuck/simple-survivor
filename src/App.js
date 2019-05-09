@@ -26,9 +26,9 @@ class App extends Component {
 
   }
 
-  handleNewPlayerState() {
+  handleNewTurn() {
     const player = store.getState().player
-    console.log(player.speed, player.food, player.water, player.skill)
+    console.log(player.speed, player.food, player.water, player.skill, player.life)
     store.dispatch({
       type: 'NEXT_TURN',
       payload: {
@@ -41,16 +41,29 @@ class App extends Component {
   }
 
   render() {
+    const player = store.getState().player
     return (
       <div>
         <World />
         <button onClick={this.onGameStart}>Start Game</button>
-        <button onClick={this.handleNewPlayerState}>Next Turn</button>
+        <button onClick={this.handleNewTurn}>Next Turn</button>
+        <ul>
+          <li>Life:{this.props.life}</li>
+          <li>Skill:{this.props.skill}</li>
+          <li>speed:{this.props.speed}</li>
+          <li>Food:{this.props.food}</li>
+          <li>Water:{this.props.water}</li>
+
+        </ul>
       </div>
     )
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    ...state.player
+  }
+}
 
-
-export default App;
+export default connect(mapStateToProps)(App);
