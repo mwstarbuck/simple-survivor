@@ -3,8 +3,10 @@ const initialState = {
     life: 10,
     skill: 5, //use for events
     speed: 5,
-    food: 15,
-    water: 5, //use for movement and events
+    food: 12,
+    water: 5,
+    gotFood: 0,
+    gotWater: 0, //use for movement and events
 }
 
 const playerReducer = (state = initialState, action) => {
@@ -15,6 +17,11 @@ const playerReducer = (state = initialState, action) => {
                 ...action.payload,
             }
         case 'NEXT_TURN':
+            return {
+                ...state,
+                ...action.payload,
+            }
+        case 'SEARCH':
             return {
                 ...state,
                 ...action.payload,

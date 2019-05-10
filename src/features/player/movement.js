@@ -18,16 +18,35 @@ export default function handleMovement(player) {
     }
 
 
-    function handleSpeedAndMove(speed, nextTile) {
+    function handleSpeedAndMove(speed, nextTile, playerState) {
         switch (true) {
             case nextTile.terrain < 10:
-                return speed - 1
+                return {
+                    speed: speed - 1,
+                    gotFood: playerState.gotFood + 0,
+                    gotWater: playerState.gotWater + 0,
+                }
             case nextTile.terrain < 11:
-                return speed - 3
-            case nextTile.terrrain < 12:
-                return speed - 2
+                return {
+                    speed: speed - 3,
+                    gotFood: playerState.gotFood + 0,
+                    gotWater: playerState.gotWater + 0,
+                }
+            case nextTile.terrain <= 12:
+                return {
+                    speed: speed - 2,
+                    gotFood: playerState.gotFood + 0,
+                    gotWater: playerState.gotWater + 0,
+                }
             case nextTile.terrain === 13:
-                return speed - 3
+                return {
+                    speed: speed - 3,
+                    gotFood: playerState.gotFood + 0,
+                    gotWater: playerState.gotWater + 1,
+                }
+
+
+
             case nextTile.terrain === 100:
                 alert("You have Won!")
                 break;
@@ -63,18 +82,18 @@ export default function handleMovement(player) {
             payload: {
                 y: y,
                 x: x,
-
                 visible: true
             }
         })
     }
 
-    function dispatchMove(newPos, speed) {
+    function dispatchMove(newPos, currentSpeed) {
         store.dispatch({
             type: 'MOVE_PLAYER',
             payload: {
                 position: newPos,
-                speed: speed
+                speed: currentSpeed.speed,
+                gotWater: currentSpeed.gotWater
             }
         })
         console.log(newPos)
@@ -82,19 +101,20 @@ export default function handleMovement(player) {
     }
 
     function attemptMove(direction) {
-        const oldPos = store.getState().player.position
+        const playerState = store.getState().player
+        const oldPos = playerState.position
         const newPos = getNewPosition(oldPos, direction)
         if (observeBoundaries(oldPos, newPos)) {
-            let oldSpeed = store.getState().player.speed
+            let oldSpeed = playerState.speed
             const tiles = store.getState().map.tiles
             const y = newPos[1] / SPRITE_SIZE
             const x = newPos[0] / SPRITE_SIZE
             const nextTile = tiles[y][x]
 
-            const currentSpeed = handleSpeedAndMove(oldSpeed, nextTile) //new
+            const currentSpeed = handleSpeedAndMove(oldSpeed, nextTile, playerState) //new
 
             //runs observeBoundaries & observeImpassable functions which return BOOL    
-            if (observeImpassable(nextTile) && currentSpeed >= 0) {
+            if (observeImpassable(nextTile) && currentSpeed.speed >= 0) {
                 // console.log(oldSpeed) //new
                 // console.log(currentSpeed)
                 dispatchMove(newPos, currentSpeed)
