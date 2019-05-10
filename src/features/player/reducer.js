@@ -4,7 +4,7 @@ const initialState = {
     skill: 5, //use for events
     speed: 5,
     food: 12,
-    water: 5,
+    water: 4,
     gotFood: 0,
     gotWater: 0, //use for movement and events
 }

@@ -12,6 +12,8 @@ class VitalsDisplay extends Component {
                     <li>speed:{this.props.vitals.speed}</li>
                     <li>Hunger:{this.props.vitals.food}</li>
                     <li>Thirst:{this.props.vitals.water}</li>
+                    <li>Water: {this.props.vitals.gotWater}</li>
+                    <li>Food: {this.props.vitals.gotFood}</li>
                 </ul>
             </div>
         )

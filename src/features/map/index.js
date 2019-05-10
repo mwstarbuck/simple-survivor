@@ -19,6 +19,15 @@ function getTileSprite(type) {
     }
 }
 
+function placeFoodSprite(type) {
+    if (type === true) {
+        console.log("food")
+        return 'food'
+    }
+    console.log('no Food')
+
+}
+
 //assigning class based on array value which will set the sprite for the tile through css
 function MapTile(props) {
     if (props.tile.visible || props.tile.base) {
@@ -29,7 +38,9 @@ function MapTile(props) {
                 width: SPRITE_SIZE,
             }}
         >
-            {}
+            {/* ======= test for placing food ========  */}
+            {props.tile.food ? <img src="tiles/chest.png"></img> : null}
+            {/* ========test done ==================== */}
         </div>
     } else {
         return <div

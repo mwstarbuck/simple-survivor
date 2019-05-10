@@ -21,3 +21,6 @@
 .base {
     background-image: url('/tiles/ranger.png')
 }
+.food {
+    background-image: url('/tiles/chest.png')
+}
