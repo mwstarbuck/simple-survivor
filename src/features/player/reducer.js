@@ -2,13 +2,14 @@ const initialState = {
     position: [400, 200],
     life: 10,
     skill: 5, //use for events
-    speed: 5,
+    speed: 6,
     food: 12,
     water: 5,
     gotFood: 0,
     gotWater: 0, //use for movement and events
     thirstHistory: 5,
-    hungerHistory: 12
+    hungerHistory: 12,
+    speedHistory: 6,
 }
 
 const playerReducer = (state = initialState, action) => {

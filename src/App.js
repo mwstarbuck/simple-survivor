@@ -8,6 +8,7 @@ import { exportDefaultSpecifier } from '@babel/types';
 import handleWater from './features/player/handleWater'
 import handleFood from './features/player/handleFood'
 import handleLife from './features/player/handleLife'
+import handleSpeed from './features/player/handleSpeed'
 
 class App extends Component {
 
@@ -93,12 +94,15 @@ class App extends Component {
     let food = player.food
     let gotFood = player.gotFood
     let life = player.life
+    let speed = player.speed
     let hungerHistory = player.hungerHistory
     let thirstHistory = player.thirstHistory
+    let speedHistory = player.speedHistory
     // // place in handleWater() function
     const waterResult = handleWater(player, currentTile, water, gotWater)
     const foodResult = handleFood(player, currentTile, food, gotFood)
     const lifeResult = handleLife(foodResult.food, waterResult.water, life, thirstHistory, hungerHistory)
+    const speedResult = handleSpeed(lifeResult.life, speed, speedHistory)
     // if (currentTile.terrain === 13) {
     //   if (player.speed === 5 && player.gotWater < 3) {
     //     gotWater++
@@ -124,7 +128,7 @@ class App extends Component {
     store.dispatch({
       type: 'NEXT_TURN',
       payload: {
-        speed: 5,
+        speed: speedResult,
         water: waterResult.water,
         gotWater: waterResult.gotWater,
         food: foodResult.food,
