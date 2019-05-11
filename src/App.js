@@ -40,7 +40,7 @@ class App extends Component {
     let speed = player.speed
     let gotFood = player.gotFood
     let food = player.food
-    if (speed > 0) {
+    if (speed > 0 && gotFood === 0) {
       let result = Math.floor(Math.random() * 50) + 1
       if (result + skill > 35) {
         gotFood = gotFood + 1
@@ -103,28 +103,6 @@ class App extends Component {
     const foodResult = handleFood(player, currentTile, food, gotFood)
     const lifeResult = handleLife(foodResult.food, waterResult.water, life, thirstHistory, hungerHistory)
     const speedResult = handleSpeed(lifeResult.life, speed, speedHistory)
-    // if (currentTile.terrain === 13) {
-    //   if (player.speed === 5 && player.gotWater < 3) {
-    //     gotWater++
-    //     water = water
-    //   } else {
-    //     water = water
-    //   }
-
-    // } else {
-    //   if (water > 0) {
-    //     gotWater = 0
-    //     water--
-    //   } else {
-    //     gotWater = 0
-    //   }
-    // }
-
-    // if (gotWater === 3 && water < 5) {
-    //   water++
-    //   gotWater = 1
-    // }
-    // end of handleWater() function returns waterResult = {water: water, gotWater: gotWater}
     store.dispatch({
       type: 'NEXT_TURN',
       payload: {
@@ -155,32 +133,5 @@ class App extends Component {
 }
 // }
 
-// const handleWater = (player, currentTile) => {
-//   if (currentTile.terrain === 13) {
-//     if (player.speed === 5 && player.gotWater < 3) {
-//       gotWater++
-//       water = water
-//     } else {
-//       water = water
-//     }
-
-//   } else {
-//     if (water > 0) {
-//       gotWater = 0
-//       water--
-//     } else {
-//       gotWater = 0
-//     }
-//   }
-
-//   if (gotWater === 3 && water < 5) {
-//     water++
-//     gotWater = 1
-//   }
-//   return {
-//     water: water,
-//     gotWater: gotWater
-//   }
-// }
 
 export default App
