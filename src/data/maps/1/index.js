@@ -48,7 +48,7 @@ function createMap(width, height) {
     for (let i = 0; i < height; i++) {
         result[i] = [] //initialize inner array
         for (let j = 0; j < width; j++) {
-            result[i][j] = { terrain: Math.floor(Math.random() * 14), visible: true, food: false }
+            result[i][j] = { terrain: Math.floor(Math.random() * 14), visible: false, food: false }
             // result[i][j] = Math.floor(Math.random() * 7)
         }
 

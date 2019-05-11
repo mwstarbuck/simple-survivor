@@ -19,33 +19,45 @@ export default function handleMovement(player) {
 
 
     function handleSpeedAndMove(speed, nextTile, playerState) {
+        let gotFood = playerState.gotFood
         switch (true) {
             case nextTile.terrain < 10:
+                if (nextTile.food === true && gotFood === 0) {
+                    gotFood++
+                }
                 return {
                     speed: speed - 1,
-                    gotFood: playerState.gotFood + 0,
+                    gotFood: gotFood,
                     gotWater: playerState.gotWater + 0,
+
                 }
             case nextTile.terrain < 11:
+                if (nextTile.food === true) {
+                    gotFood++
+                }
                 return {
                     speed: speed - 3,
-                    gotFood: playerState.gotFood + 0,
+                    gotFood: gotFood,
                     gotWater: playerState.gotWater + 0,
                 }
             case nextTile.terrain <= 12:
+                if (nextTile.food === true) {
+                    gotFood++
+                }
                 return {
                     speed: speed - 2,
-                    gotFood: playerState.gotFood + 0,
+                    gotFood: gotFood,
                     gotWater: playerState.gotWater + 0,
                 }
             case nextTile.terrain === 13:
+                if (nextTile.food === true) {
+                    gotFood++
+                }
                 return {
                     speed: speed - 3,
-                    gotFood: playerState.gotFood + 0,
+                    gotFood: gotFood,
                     gotWater: playerState.gotWater + 1,
                 }
-
-
 
             case nextTile.terrain === 100:
                 alert("You have Won!")
@@ -93,7 +105,8 @@ export default function handleMovement(player) {
             payload: {
                 position: newPos,
                 speed: currentSpeed.speed,
-                gotWater: currentSpeed.gotWater
+                gotWater: currentSpeed.gotWater,
+                gotFood: currentSpeed.gotFood
             }
         })
         console.log(newPos)
