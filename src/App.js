@@ -7,6 +7,7 @@ import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT } from './config/constants'
 import { exportDefaultSpecifier } from '@babel/types';
 import handleWater from './features/player/handleWater'
 import handleFood from './features/player/handleFood'
+import handleLife from './features/player/handleLife'
 
 class App extends Component {
 
@@ -91,9 +92,13 @@ class App extends Component {
     let gotWater = player.gotWater
     let food = player.food
     let gotFood = player.gotFood
+    let life = player.life
+    let hungerHistory = player.hungerHistory
+    let thirstHistory = player.thirstHistory
     // // place in handleWater() function
     const waterResult = handleWater(player, currentTile, water, gotWater)
     const foodResult = handleFood(player, currentTile, food, gotFood)
+    const lifeResult = handleLife(foodResult.food, waterResult.water, life, thirstHistory, hungerHistory)
     // if (currentTile.terrain === 13) {
     //   if (player.speed === 5 && player.gotWater < 3) {
     //     gotWater++
@@ -123,7 +128,10 @@ class App extends Component {
         water: waterResult.water,
         gotWater: waterResult.gotWater,
         food: foodResult.food,
-        gotFood: foodResult.gotFood
+        gotFood: foodResult.gotFood,
+        life: lifeResult.life,
+        thirstHistory: lifeResult.thirstHistory,
+        hungerHistory: lifeResult.hungerHistory,
       }
     })
   }
