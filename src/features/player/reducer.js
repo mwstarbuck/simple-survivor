@@ -7,6 +7,8 @@ const initialState = {
     water: 5,
     gotFood: 0,
     gotWater: 0, //use for movement and events
+    thirstHistory: 5,
+    hungerHistory: 12
 }
 
 const playerReducer = (state = initialState, action) => {
