@@ -12,9 +12,12 @@ export default function handleFood(player, currentTile, food, gotFood) {
         if (food > 0 && gotFood != 0) {
             gotFood = 0
             food = food
-        } else {
+        } else if (food > 0 && gotFood === 0) {
             gotFood = 0
             food--
+        } else {
+            gotFood = 0
+            food = 0
         }
     }
     if (gotFood === 4 && food < 12) {

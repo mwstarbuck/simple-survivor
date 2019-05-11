@@ -13,9 +13,12 @@ export default function handleWater(player, currentTile, water, gotWater) {
         if (water > 0 && gotWater != 0) {
             gotWater = 0
             water = water
-        } else {
+        } else if (water > 0 && gotWater === 0) {
             gotWater = 0
             water--
+        } else {
+            gotWater = 0
+            water = 0
         }
     }
 
