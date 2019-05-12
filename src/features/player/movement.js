@@ -53,12 +53,20 @@ export default function handleMovement(player) {
                 if (nextTile.food === true) {
                     gotFood++
                 }
-                return {
-                    speed: speed - 3,
-                    gotFood: gotFood,
-                    gotWater: playerState.gotWater + 1,
-                }
+                if (playerState.gotWater > 0) {
+                    return {
+                        speed: speed - 3,
+                        gotFood: gotFood,
+                        gotWater: playerState.gotWater,
+                    }
 
+                } else {
+                    return {
+                        speed: speed - 3,
+                        gotFood: gotFood,
+                        gotWater: playerState.gotWater + 1,
+                    }
+                }
             case nextTile.terrain === 100:
                 alert("You have Won!")
                 break;
@@ -85,21 +93,32 @@ export default function handleMovement(player) {
     }
 
 
-    function LOS(newPos) {
+    function LOS(newPos, nextTile) {
         const y = newPos[1] / SPRITE_SIZE
         const x = newPos[0] / SPRITE_SIZE
+        if (nextTile.terrain === 10 || nextTile.terrain === 11) {
+            store.dispatch({
+                type: 'MOUNTAIN_VIEW',
+                payload: {
+                    y: y,
+                    x: x,
+                    visible: true
+                }
+            })
 
-        store.dispatch({
-            type: 'REVEAL_TILES',
-            payload: {
-                y: y,
-                x: x,
-                visible: true
-            }
-        })
+        } else {
+            store.dispatch({
+                type: 'REVEAL_TILES',
+                payload: {
+                    y: y,
+                    x: x,
+                    visible: true
+                }
+            })
+        }
     }
 
-    function dispatchMove(newPos, currentSpeed) {
+    function dispatchMove(newPos, currentSpeed, nextTile) {
         store.dispatch({
             type: 'MOVE_PLAYER',
             payload: {
@@ -110,7 +129,7 @@ export default function handleMovement(player) {
             }
         })
         console.log(newPos)
-        LOS(newPos)
+        LOS(newPos, nextTile)
     }
 
     function attemptMove(direction) {
@@ -130,7 +149,7 @@ export default function handleMovement(player) {
             if (observeImpassable(nextTile) && currentSpeed.speed >= 0) {
                 // console.log(oldSpeed) //new
                 // console.log(currentSpeed)
-                dispatchMove(newPos, currentSpeed)
+                dispatchMove(newPos, currentSpeed, nextTile)
                 console.log(nextTile)
             }
         }
