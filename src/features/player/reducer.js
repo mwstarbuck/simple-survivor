@@ -10,6 +10,8 @@ const initialState = {
     thirstHistory: 5,
     hungerHistory: 12,
     speedHistory: 6,
+    currentTerrain: 0,
+    lastDirection: '',
     event: ""
 }
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 class VitalsDisplay extends Component {
     render() {
         return (
-            <div>
+            <div className="left-UI">
                 <h1>Player Vitals</h1>
                 <ul>
                     <li>Life:{this.props.vitals.life}</li>

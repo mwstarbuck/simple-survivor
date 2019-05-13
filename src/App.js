@@ -106,15 +106,16 @@ class App extends Component {
     const foodResult = handleFood(player, currentTile, food, gotFood)
     const lifeResult = handleLife(foodResult.food, waterResult.water, life, thirstHistory, hungerHistory)
     const speedResult = handleSpeed(lifeResult.life, speed)
-    const eventResult = handleEvents(currentTile, 4)
+    const eventResult = handleEvents(currentTile, foodResult, waterResult, 5)
+    console.log(eventResult)
     store.dispatch({
       type: 'NEXT_TURN',
       payload: {
-        speed: speedResult,
+        speed: speedResult + eventResult.speed,
         water: waterResult.water,
-        gotWater: waterResult.gotWater,
+        gotWater: waterResult.gotWater + eventResult.gotWater,
         food: foodResult.food,
-        gotFood: foodResult.gotFood,
+        gotFood: foodResult.gotFood + eventResult.gotFood,
         life: lifeResult.life,
         thirstHistory: lifeResult.thirstHistory,
         hungerHistory: lifeResult.hungerHistory,

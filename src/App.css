@@ -3,5 +3,11 @@
     justify-content: space-between;
 }
 .right-UI {
+    width: 400px;
     margin-right: 200px;
+}
+.left-UI {
+    width: 400px;
+    margin-left: 200px;
+  
 }

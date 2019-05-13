@@ -1,6 +1,6 @@
 import store from '../../config/store'
 import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT } from '../../config/constants'
-
+import handleEvents from '../map/handleEvents'
 
 export default function handleMovement(player) {
 
@@ -17,54 +17,129 @@ export default function handleMovement(player) {
         }
     }
 
+    // function checkForEvent(range) {
+    //     let result = Math.floor(Math.random() * range)
+    //     if (result <= 10) {
+    //         return {}
+    //     } else {
 
-    function handleSpeedAndMove(speed, nextTile, playerState) {
+    //     }
+    // }
+
+    function handleSpeedAndMove(speed, nextTile, playerState, direction) {
         let gotFood = playerState.gotFood
+        let terrain = playerState.currentTerrain
+        let lastDirection = playerState.lastDirection
         switch (true) {
             case nextTile.terrain < 10:
                 if (nextTile.food === true && gotFood === 0) {
                     gotFood++
                 }
-                return {
-                    speed: speed - 1,
-                    gotFood: gotFood,
-                    gotWater: playerState.gotWater + 0,
-
-                }
-            case nextTile.terrain < 11:
-                if (nextTile.food === true) {
-                    gotFood++
-                }
-                return {
-                    speed: speed - 3,
-                    gotFood: gotFood,
-                    gotWater: playerState.gotWater + 0,
-                }
-            case nextTile.terrain <= 12:
-                if (nextTile.food === true) {
-                    gotFood++
-                }
-                return {
-                    speed: speed - 2,
-                    gotFood: gotFood,
-                    gotWater: playerState.gotWater + 0,
-                }
-            case nextTile.terrain === 13:
-                if (nextTile.food === true) {
-                    gotFood++
-                }
-                if (playerState.gotWater > 0) {
+                if (terrain === 13 && lastDirection === direction) {
                     return {
                         speed: speed - 3,
                         gotFood: gotFood,
                         gotWater: playerState.gotWater,
+                        currentTerrain: nextTile.terrain,
+                        lastDirection: direction,
+                    }
+
+                } else {
+                    return {
+                        speed: speed - 1,
+                        gotFood: gotFood,
+                        gotWater: playerState.gotWater + 0,
+                        currentTerrain: nextTile.terrain,
+                        lastDirection: direction,
+
+                    }
+                }
+            case nextTile.terrain < 12:
+                if (nextTile.food === true) {
+                    gotFood++
+                }
+                if (terrain === 13 && lastDirection === direction) {
+                    return {
+                        speed: speed - 3,
+                        gotFood: gotFood,
+                        gotWater: playerState.gotWater,
+                        currentTerrain: nextTile.terrain,
+                        lastDirection: direction,
                     }
 
                 } else {
                     return {
                         speed: speed - 3,
                         gotFood: gotFood,
-                        gotWater: playerState.gotWater + 1,
+                        gotWater: playerState.gotWater + 0,
+                        currentTerrain: nextTile.terrain,
+                        lastDirection: direction,
+                    }
+                }
+            case nextTile.terrain < 13:
+                if (nextTile.food === true) {
+                    gotFood++
+                }
+                if (terrain === 13 && lastDirection === direction) {
+                    return {
+                        speed: speed - 3,
+                        gotFood: gotFood,
+                        gotWater: playerState.gotWater,
+                        currentTerrain: nextTile.terrain,
+                        lastDirection: direction,
+                    }
+
+                } else {
+                    return {
+                        speed: speed - 2,
+                        gotFood: gotFood,
+                        gotWater: playerState.gotWater + 0,
+                        currentTerrain: nextTile.terrain,
+                        lastDirection: direction,
+                    }
+                }
+            case nextTile.terrain === 13:
+                if (nextTile.food === true) {
+                    gotFood++
+                }
+                if (terrain === 13 && lastDirection === direction) {
+                    if (playerState.gotWater > 0) {
+                        return {
+                            speed: speed - 3,
+                            gotFood: gotFood,
+                            gotWater: playerState.gotWater,
+                            currentTerrain: nextTile.terrain,
+                            lastDirection: direction,
+                        }
+
+                    } else {
+                        return {
+                            speed: speed - 3,
+                            gotFood: gotFood,
+                            gotWater: playerState.gotWater + 1,
+                            currentTerrain: nextTile.terrain,
+                            lastDirection: direction,
+                        }
+                    }
+
+                } else {
+                    if (playerState.gotWater > 0) {
+                        return {
+                            speed: speed - 1,
+                            gotFood: gotFood,
+                            gotWater: playerState.gotWater,
+                            currentTerrain: nextTile.terrain,
+                            lastDirection: direction,
+                        }
+
+                    } else {
+                        return {
+                            speed: speed - 1,
+                            gotFood: gotFood,
+                            gotWater: playerState.gotWater + 1,
+                            currentTerrain: nextTile.terrain,
+                            lastDirection: direction,
+                        }
                     }
                 }
             case nextTile.terrain === 100:
@@ -78,15 +153,6 @@ export default function handleMovement(player) {
             (newPos[1] >= 0 && newPos[1] <= MAP_HEIGHT - SPRITE_SIZE)
     }
 
-    // function observeImpassable(oldPos, newPos) {
-    //     const tiles = store.getState().map.tiles
-    //     const y = newPos[1] / SPRITE_SIZE
-    //     const x = newPos[0] / SPRITE_SIZE
-    //     const nextTile = tiles[y][x]
-
-    //     console.log(x, y)
-    //     return nextTile.terrain < 15 //controls tiles player can move through >=7 allows free movement
-    // }
 
     function observeImpassable(nextTile) {
         return nextTile.terrain < 20 //controls tiles player can move through >=7 allows free movement
@@ -125,7 +191,10 @@ export default function handleMovement(player) {
                 position: newPos,
                 speed: currentSpeed.speed,
                 gotWater: currentSpeed.gotWater,
-                gotFood: currentSpeed.gotFood
+                gotFood: currentSpeed.gotFood,
+                currentTerrain: currentSpeed.currentTerrain,
+                lastDirection: currentSpeed.lastDirection,
+
             }
         })
         console.log(newPos)
@@ -143,7 +212,8 @@ export default function handleMovement(player) {
             const x = newPos[0] / SPRITE_SIZE
             const nextTile = tiles[y][x]
 
-            const currentSpeed = handleSpeedAndMove(oldSpeed, nextTile, playerState) //new
+            const currentSpeed = handleSpeedAndMove(oldSpeed, nextTile, playerState, direction) //new
+            // const eventResults = checkForEvent(100)
 
             //runs observeBoundaries & observeImpassable functions which return BOOL    
             if (observeImpassable(nextTile) && currentSpeed.speed >= 0) {
