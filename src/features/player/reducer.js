@@ -10,6 +10,7 @@ const initialState = {
     thirstHistory: 5,
     hungerHistory: 12,
     speedHistory: 6,
+    event: ""
 }
 
 const playerReducer = (state = initialState, action) => {

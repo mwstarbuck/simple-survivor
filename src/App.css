@@ -1,0 +1,7 @@
+.UI {
+    display: flex;
+    justify-content: space-between;
+}
+.right-UI {
+    margin-right: 200px;
+}
