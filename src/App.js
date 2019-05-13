@@ -9,6 +9,9 @@ import handleWater from './features/player/handleWater'
 import handleFood from './features/player/handleFood'
 import handleLife from './features/player/handleLife'
 import handleSpeed from './features/player/handleSpeed'
+import EventsDisplay from './components/EventsDisplay';
+import handleEvents from './features/map/handleEvents'
+import '../src/App.css'
 
 class App extends Component {
 
@@ -102,7 +105,8 @@ class App extends Component {
     const waterResult = handleWater(player, currentTile, water, gotWater)
     const foodResult = handleFood(player, currentTile, food, gotFood)
     const lifeResult = handleLife(foodResult.food, waterResult.water, life, thirstHistory, hungerHistory)
-    const speedResult = handleSpeed(lifeResult.life, speed, speedHistory)
+    const speedResult = handleSpeed(lifeResult.life, speed)
+    const eventResult = handleEvents(currentTile, 4)
     store.dispatch({
       type: 'NEXT_TURN',
       payload: {
@@ -114,6 +118,7 @@ class App extends Component {
         life: lifeResult.life,
         thirstHistory: lifeResult.thirstHistory,
         hungerHistory: lifeResult.hungerHistory,
+        event: eventResult
       }
     })
   }
@@ -126,7 +131,10 @@ class App extends Component {
         <button onClick={this.onGameStart}>Start Game</button>
         <button onClick={this.handleNewTurn}>Next Turn</button>
         <button onClick={this.handleSearch}>Search</button>
-        <VitalsDisplay />
+        <div className="UI">
+          <VitalsDisplay />
+          <EventsDisplay></EventsDisplay>
+        </div>
       </div>
     )
   }
