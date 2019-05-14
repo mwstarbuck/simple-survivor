@@ -1,5 +1,5 @@
 const initialState = {
-    position: [400, 200],
+    position: [0, 0],
     life: 10,
     skill: 5, //use for events
     speed: 6,
