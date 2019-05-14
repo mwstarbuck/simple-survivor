@@ -1,5 +1,8 @@
 const initialState = {
     position: [0, 0],
+    spriteLocation: '0px 0px',
+    direction: 'south',
+    walkIndex: 0,
     life: 10,
     skill: 5, //use for events
     speed: 6,

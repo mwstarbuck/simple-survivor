@@ -17,6 +17,24 @@ export default function handleMovement(player) {
         }
     }
 
+    function getSpriteLocation(direction, walkIndex) {
+        switch (direction) {
+            case 'SOUTH':
+                return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 0}px`         // handling movement of tile sheet
+            case 'EAST':
+                return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 1}px`
+            case 'WEST':
+                return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 2}px`
+            case 'NORTH':
+                return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 3}px`
+        }
+
+    }
+
+    function getWalkIndex(wIndex) {
+        const walkIndex = wIndex
+        return walkIndex >= 7 ? 0 : walkIndex + 1
+    }
     // function checkForEvent(range) {
     //     let result = Math.floor(Math.random() * range)
     //     if (result <= 10) {
@@ -37,7 +55,7 @@ export default function handleMovement(player) {
                 }
                 if (terrain === 13 && lastDirection === direction) {
                     return {
-                        speed: speed - 3,
+                        speed: speed - 4,
                         gotFood: gotFood,
                         gotWater: playerState.gotWater,
                         currentTerrain: nextTile.terrain,
@@ -60,7 +78,7 @@ export default function handleMovement(player) {
                 }
                 if (terrain === 13 && lastDirection === direction) {
                     return {
-                        speed: speed - 3,
+                        speed: speed - 6,
                         gotFood: gotFood,
                         gotWater: playerState.gotWater,
                         currentTerrain: nextTile.terrain,
@@ -82,7 +100,7 @@ export default function handleMovement(player) {
                 }
                 if (terrain === 13 && lastDirection === direction) {
                     return {
-                        speed: speed - 3,
+                        speed: speed - 5,
                         gotFood: gotFood,
                         gotWater: playerState.gotWater,
                         currentTerrain: nextTile.terrain,
@@ -184,11 +202,15 @@ export default function handleMovement(player) {
         }
     }
 
-    function dispatchMove(newPos, currentSpeed, nextTile) {
+    function dispatchMove(direction, newPos, currentSpeed, nextTile, wIndex) {
+        const walkIndex = getWalkIndex(wIndex)
         store.dispatch({
             type: 'MOVE_PLAYER',
             payload: {
                 position: newPos,
+                direction: direction,
+                walkIndex: walkIndex,
+                spriteLocation: getSpriteLocation(direction, walkIndex),
                 speed: currentSpeed.speed,
                 gotWater: currentSpeed.gotWater,
                 gotFood: currentSpeed.gotFood,
@@ -219,7 +241,7 @@ export default function handleMovement(player) {
             if (observeImpassable(nextTile) && currentSpeed.speed >= 0) {
                 // console.log(oldSpeed) //new
                 // console.log(currentSpeed)
-                dispatchMove(newPos, currentSpeed, nextTile)
+                dispatchMove(direction, newPos, currentSpeed, nextTile, playerState.walkIndex)
                 console.log(nextTile)
             }
         }
