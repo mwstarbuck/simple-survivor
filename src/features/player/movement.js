@@ -3,7 +3,7 @@ import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT } from '../../config/constants'
 import handleEvents from '../map/handleEvents'
 
 export default function handleMovement(player) {
-
+    //position where sprite will end move
     function getNewPosition(oldPos, direction) {
         switch (direction) {
             case 'WEST':
@@ -201,7 +201,9 @@ export default function handleMovement(player) {
             })
         }
     }
-
+    // place an intermediate move dispatch only for sprite position 
+    // need get getNewLocation(), get spriteLocation(), getWalkIndex()
+    //possibly run sprie loc and walk index 
     function dispatchMove(direction, newPos, currentSpeed, nextTile, wIndex) {
         const walkIndex = getWalkIndex(wIndex)
         store.dispatch({
