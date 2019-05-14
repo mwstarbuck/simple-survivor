@@ -18,6 +18,7 @@ function EventsDisplay(props) {
         return (
             <div className="right-UI">
                 <h1>Events</h1>
+                <h2>{props.eventObj.caption}</h2>
                 <p>{props.eventObj.event || props.event}</p>
             </div>
         )
