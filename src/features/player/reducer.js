@@ -40,6 +40,11 @@ const playerReducer = (state = initialState, action) => {
                 ...state,
                 ...action.payload,
             }
+        case 'END_DAY_EVENT':
+            return {
+                ...state,
+                ...action.payload,
+            }
         default:
             return state
     }

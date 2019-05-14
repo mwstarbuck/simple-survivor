@@ -39,7 +39,7 @@ function MapTile(props) {
             }}
         >
             {/* ======= test for placing food ========  */}
-            {props.tile.food ? <img src="tiles/chest.png"></img> : null}
+            {props.tile.food ? <img src="tiles/food.png"></img> : null}
             {/* ========test done ==================== */}
         </div>
     } else {

@@ -20,9 +20,9 @@ function placeBase(width, height, array) {
     let x = Math.floor(Math.random() * width)
     let y = Math.floor(Math.random() * height)
     if (x >= 7 && x <= 10) {
-        x = x + Math.floor(Math.random() * 4) + 3
+        x = x - Math.floor(Math.random() * 4) + 3
     }
-    if (x >= 10 && x <= 13) {
+    if (x > 10 && x <= 13) {
         x = x + Math.floor(Math.random() * 4) + 3
     }
     array[y][x].terrain = 100
@@ -31,7 +31,18 @@ function placeBase(width, height, array) {
 }
 
 function placeFood(width, height, array) {
-    const num = 8
+    const num = rollRandom(2) + 4
+
+    let doublePlacement = rollRandom(2) + 1
+    while (doublePlacement != 0) {
+        let x = rollRandom(width)
+        let y = rollRandom(height)
+        if (array[y][x].terrain === 13) {
+            array[y][x].food = true
+            console.log("food")
+            doublePlacement--
+        }
+    }
     for (let i = 0; i <= num; i++) {
         let x = rollRandom(width)
         let y = rollRandom(height)
@@ -48,7 +59,7 @@ function createMap(width, height) {
     for (let i = 0; i < height; i++) {
         result[i] = [] //initialize inner array
         for (let j = 0; j < width; j++) {
-            result[i][j] = { terrain: Math.floor(Math.random() * 14), visible: false, food: false }
+            result[i][j] = { terrain: Math.floor(Math.random() * 14), visible: true, food: false }
             // result[i][j] = Math.floor(Math.random() * 7)
         }
 

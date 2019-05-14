@@ -1,5 +1,5 @@
 import store from '../../config/store'
-import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT } from '../../config/constants'
+import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT, END_DAY_MESSAGE } from '../../config/constants'
 import handleEvents from '../map/handleEvents'
 
 export default function handleMovement(player) {
@@ -175,7 +175,16 @@ export default function handleMovement(player) {
     function observeImpassable(nextTile) {
         return nextTile.terrain < 20 //controls tiles player can move through >=7 allows free movement
     }
-
+    function endTurnReminder(currentSpeed) {
+        if (currentSpeed.speed === 0) {
+            store.dispatch({
+                type: 'END_DAY_EVENT',
+                payload: {
+                    event: END_DAY_MESSAGE,
+                }
+            })
+        }
+    }
 
     function LOS(newPos, nextTile) {
         const y = newPos[1] / SPRITE_SIZE
@@ -223,6 +232,7 @@ export default function handleMovement(player) {
         })
         console.log(newPos)
         LOS(newPos, nextTile)
+        endTurnReminder(currentSpeed)
     }
 
     function attemptMove(direction) {

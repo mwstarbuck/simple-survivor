@@ -3,7 +3,7 @@ import World from './features/world'
 import store from './config/store'
 import VitalsDisplay from './components/VitalsDisplay'
 import { connect } from 'react-redux'
-import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT } from './config/constants'
+import { SPRITE_SIZE, GAME_START_MESSAGE, MAP_WIDTH, MAP_HEIGHT } from './config/constants'
 import { exportDefaultSpecifier } from '@babel/types';
 import handleWater from './features/player/handleWater'
 import handleFood from './features/player/handleFood'
@@ -22,7 +22,6 @@ class App extends Component {
     const y = oldPos[1] / SPRITE_SIZE
     const x = oldPos[0] / SPRITE_SIZE
     const startTile = tiles[y][x]
-
     //adjust player starting water and food if necessary
     let startGotWater = 0
     let startGotFood = 0
@@ -37,20 +36,31 @@ class App extends Component {
       payload: {
         gotWater: startGotWater,
         gotFood: startGotFood,
+        event: GAME_START_MESSAGE,
       }
     })
 
 
+    if (startTile.terrain === 10 || startTile.terrain === 11) {
+      store.dispatch({
+        type: 'MOUNTAIN_VIEW',
+        payload: {
+          y: y,
+          x: x,
+          visible: true
+        }
+      })
 
-    store.dispatch({
-      type: 'REVEAL_TILES',
-      payload: {
-        y: y,
-        x: x,
-        visible: true
-      }
-    })
-
+    } else {
+      store.dispatch({
+        type: 'REVEAL_TILES',
+        payload: {
+          y: y,
+          x: x,
+          visible: true
+        }
+      })
+    }
   }
 
   handleSearch() {
@@ -78,7 +88,7 @@ class App extends Component {
       type: 'SEARCH',
       payload: {
         speed: speed,
-        gotFood: gotFood
+        gotFood: gotFood,
       }
     })
   }
@@ -103,6 +113,7 @@ class App extends Component {
     const lifeResult = handleLife(foodResult.food, waterResult.water, life, thirstHistory, hungerHistory)
     const speedResult = handleSpeed(lifeResult.life, speed)
     const eventResult = handleEvents(currentTile, foodResult, waterResult, 5)
+
     console.log(eventResult)
     store.dispatch({
       type: 'NEXT_TURN',
@@ -118,6 +129,11 @@ class App extends Component {
         event: eventResult
       }
     })
+    // ======== DEATH END GAME CHECK =================
+    if (lifeResult.life === 0) {
+      alert("Player has died.  Game Over")
+      // do more stuff here
+    }
   }
 
   render() {
