@@ -55,7 +55,7 @@ export default function handleMovement(player) {
                 }
                 if (terrain === 13 && lastDirection === direction) {
                     return {
-                        speed: speed - 4,
+                        speed: speed - 3,
                         gotFood: gotFood,
                         gotWater: playerState.gotWater,
                         currentTerrain: nextTile.terrain,
@@ -78,7 +78,7 @@ export default function handleMovement(player) {
                 }
                 if (terrain === 13 && lastDirection === direction) {
                     return {
-                        speed: speed - 6,
+                        speed: speed - 5,
                         gotFood: gotFood,
                         gotWater: playerState.gotWater,
                         currentTerrain: nextTile.terrain,
@@ -100,7 +100,7 @@ export default function handleMovement(player) {
                 }
                 if (terrain === 13 && lastDirection === direction) {
                     return {
-                        speed: speed - 5,
+                        speed: speed - 4,
                         gotFood: gotFood,
                         gotWater: playerState.gotWater,
                         currentTerrain: nextTile.terrain,
@@ -123,7 +123,7 @@ export default function handleMovement(player) {
                 if (terrain === 13 && lastDirection === direction) {
                     if (playerState.gotWater > 0) {
                         return {
-                            speed: speed - 3,
+                            speed: speed - 5,
                             gotFood: gotFood,
                             gotWater: playerState.gotWater,
                             currentTerrain: nextTile.terrain,
@@ -132,7 +132,7 @@ export default function handleMovement(player) {
 
                     } else {
                         return {
-                            speed: speed - 3,
+                            speed: speed - 5,
                             gotFood: gotFood,
                             gotWater: playerState.gotWater + 1,
                             currentTerrain: nextTile.terrain,
