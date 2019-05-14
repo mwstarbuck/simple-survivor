@@ -35,6 +35,11 @@ const playerReducer = (state = initialState, action) => {
                 ...state,
                 ...action.payload,
             }
+        case 'ADJUST_STATS':
+            return {
+                ...state,
+                ...action.payload,
+            }
         default:
             return state
     }

@@ -17,9 +17,30 @@ class App extends Component {
 
   onGameStart() {
     const tiles = store.getState().map.tiles
-    const oldPos = store.getState().player.position
+    const player = store.getState().player
+    const oldPos = player.position
     const y = oldPos[1] / SPRITE_SIZE
     const x = oldPos[0] / SPRITE_SIZE
+    const startTile = tiles[y][x]
+
+    //adjust player starting water and food if necessary
+    let startGotWater = 0
+    let startGotFood = 0
+    if (startTile.terrain === 13) {
+      startGotWater = 1
+    }
+    if (startTile.food) {
+      startGotFood = 1
+    }
+    store.dispatch({
+      type: 'ADJUST_STATS',
+      payload: {
+        gotWater: startGotWater,
+        gotFood: startGotFood,
+      }
+    })
+
+
 
     store.dispatch({
       type: 'REVEAL_TILES',
@@ -61,31 +82,6 @@ class App extends Component {
       }
     })
   }
-  //===== handleWater function returning error Cannot read property 'handleWater of undefined ==========================
-
-  // handleWater = (player, currentTile, water, gotWater) => {
-  //   if (currentTile.terrain === 13) {
-  //     if (player.speed === 5 && player.gotWater < 3) {
-  //       gotWater++
-  //       water = water
-  //     } else {
-  //       water = water
-  //     }
-
-  //   } else {
-  //     if (water > 0) {
-  //       gotWater = 0
-  //       water--
-  //     } else {
-  //       gotWater = 0
-  //     }
-  //   }
-
-  //   if (gotWater === 3 && water < 5) {
-  //     water++
-  //     gotWater = 1
-  //   }
-  // }
   handleNewTurn() {
     const player = store.getState().player
     const tiles = store.getState().map.tiles
