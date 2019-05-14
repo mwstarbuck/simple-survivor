@@ -1,5 +1,5 @@
 const initialState = {
-    position: [0, 0],
+    position: [400, 200],
     spriteLocation: '0px 0px',
     direction: 'south',
     walkIndex: 0,
@@ -31,6 +31,11 @@ const playerReducer = (state = initialState, action) => {
                 ...action.payload,
             }
         case 'SEARCH':
+            return {
+                ...state,
+                ...action.payload,
+            }
+        case 'ADJUST_STATS':
             return {
                 ...state,
                 ...action.payload,
