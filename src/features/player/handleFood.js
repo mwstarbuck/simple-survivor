@@ -1,11 +1,13 @@
 
 
 export default function handleFood(player, currentTile, food, gotFood) {
+    console.log(currentTile)
     if (currentTile.food === true) {
-        if (player.speed === 5 && player.gotFood < 4) {
+        if (player.turnSpeed / player.speed === 1 && player.gotFood < 4) {
             gotFood++
             food = food
         } else {
+            gotFood = 1
             food = food
         }
     } else {

@@ -1,19 +1,19 @@
 .tile {
     display: inline-flex;
-    background-color: #42b842;
+    /* background-color: #42b842; */
 }
 .grass {
-    background-color: #42b842;
+    background-image: url('/tiles/plains80.png')
 }
 
 .rock {
-    background-image: url('/tiles/rock.png')
+    background-image: url('/tiles/mountain80-3.png')
 }
 .tree{
-    background-image: url('/tiles/tree.png')
+    background-image: url('/tiles/forest80.png')
 }
 .water {
-     background-color: rgb(0, 102, 128);
+     background-image: url('/tiles/marsh80.png')
 }
 .fog {
     background-color:   black;
@@ -22,5 +22,5 @@
     background-image: url('/tiles/ranger.png')
 }
 .food {
-    background-image: url('/tiles/chest.png')
+    background-image: url('/tiles/food.png')
 }

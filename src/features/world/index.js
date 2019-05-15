@@ -1,6 +1,7 @@
 import React from 'react'
 import Map from '../map'
 import Player from '../player'
+import { connect } from 'react-redux'
 
 import { tiles } from '../../data/maps/1'
 import store from '../../config/store'
@@ -19,7 +20,10 @@ function World(props) {
                 position: 'relative',
                 width: '800px',
                 height: '400px',
-                margin: '20px auto',
+                // minWidth: '800px',
+                // minHeight: '400px',
+                transform: `scale(${props.style.scale}, ${props.style.scale})`,
+                margin: '100 auto',
             }}
         >
             <Map />
@@ -28,4 +32,10 @@ function World(props) {
     )
 }
 
-export default World
+function mapStateToProps(state) {
+    return {
+        style: state.world
+    }
+}
+
+export default connect(mapStateToProps)(World)
