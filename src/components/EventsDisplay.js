@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import handleEvents from '../features/map/handleEvents'
 
+
 function EventsDisplay(props) {
     if (props.eventObj.choice) {
         return (

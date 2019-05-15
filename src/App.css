@@ -1,13 +1,17 @@
 .UI {
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
 }
 .right-UI {
     width: 400px;
-    margin-right: 200px;
+    margin-left: 300px;
+    margin-right: 100px;
 }
 .left-UI {
     width: 400px;
-    margin-left: 200px;
+    margin-left: 50px;
   
+}
+.vits {
+    margin-bottom: 1em
 }
