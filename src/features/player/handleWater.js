@@ -1,11 +1,13 @@
 import store from 'react-redux'
 
 export default function handleWater(player, currentTile, water, gotWater) {
+    console.log(currentTile)
     if (currentTile.terrain === 13) {
-        if (player.speed === 5 && player.gotWater < 4) {
+        if (player.turnSpeed / player.speed === 1 && player.gotWater < 4) {
             gotWater++
             water = water
         } else {
+            gotWater = 1
             water = water
         }
 

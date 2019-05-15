@@ -1,11 +1,12 @@
 const initialState = {
-    position: [400, 200],
+    position: [20, 50],
     spriteLocation: '0px 0px',
     direction: 'south',
     walkIndex: 0,
     life: 10,
     skill: 5, //use for events
     speed: 6,
+    turnSpeed: 6,
     food: 12,
     water: 5,
     gotFood: 0,
