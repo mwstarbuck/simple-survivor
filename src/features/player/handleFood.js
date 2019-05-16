@@ -23,7 +23,7 @@ export default function handleFood(player, currentTile, food, gotFood) {
         }
     }
     if (gotFood === 4 && food < 12) {
-        food += 3
+        food += 1
         gotFood = 1
 
     }

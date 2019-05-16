@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import store from '../config/store'
 import handleEvents from '../features/map/handleEvents'
+import createMap, * as mapCreate from '../data/maps/1/index'
 
 
 function EventsDisplay(props) {
@@ -9,9 +11,10 @@ function EventsDisplay(props) {
             <div className="right-UI">
                 <h1>Events</h1>
                 <div>
+                    <h2>{props.eventObj.caption}</h2>
                     <p>{props.eventObj.event}</p>
-                    <button>Yes</button>
-                    <button>No</button>
+                    <button onClick={refresh}>Yes</button>
+                    <button onClick={redirect}>No</button>
                 </div>
             </div>
         )
@@ -31,4 +34,12 @@ const mapStateToProps = (state) => {
         eventObj: state.player.event
     }
 }
+function refresh() {
+    window.location.reload()
+}
+function redirect() {
+    window.location.href = 'http://localhost:3000'
+}
+
+
 export default connect(mapStateToProps)(EventsDisplay)

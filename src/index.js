@@ -15,14 +15,14 @@ ReactDOM.render(<Provider store={store}>
     <BrowserRouter>
         <BaseLayout>
             <Switch>
-                <Route path="/home" component={Splash} />
+                <Route exact path="/" component={Splash} />
                 <Route path="/game" component={App} />
                 <Route path="/about" component={About} />
 
             </Switch>
         </BaseLayout>
     </BrowserRouter>
-    {/* <App /> */}
+
 </Provider>, document.getElementById('root'));
 
         // If you want your app to work offline and load faster, you can change

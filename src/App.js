@@ -3,7 +3,7 @@ import World from './features/world'
 import store from './config/store'
 import VitalsDisplay from './components/VitalsDisplay'
 import { connect } from 'react-redux'
-import { SPRITE_SIZE, GAME_START_MESSAGE, MAP_WIDTH, MAP_HEIGHT } from './config/constants'
+import { SPRITE_SIZE, GAME_START_MESSAGE, GAME_OVER_MESSAGE, MAP_WIDTH, MAP_HEIGHT } from './config/constants'
 import { exportDefaultSpecifier } from '@babel/types';
 import handleWater from './features/player/handleWater'
 import handleFood from './features/player/handleFood'
@@ -12,15 +12,15 @@ import handleSpeed from './features/player/handleSpeed'
 import EventsDisplay from './components/EventsDisplay';
 import handleEvents from './features/map/handleEvents'
 import '../src/App.css'
-import handleZoomIn from '../src/features/world/handleZoomIn' //
-import handleZoomOut from './features/world/handleZoomOut';
-import createMap from './data/maps/1/index'
+import handleMovement from './features/player/movement'
 //==NEW
 
 class App extends Component {
-
+  constructor() {
+    super()
+  }
   onGameStart() {
-    // createMap(20, 10)
+
 
     const tiles = store.getState().map.tiles
     const player = store.getState().player
@@ -31,7 +31,7 @@ class App extends Component {
     //adjust player starting water and food if necessary
     let startGotWater = 0
     let startGotFood = 0
-    if (startTile.terrain === 13) {
+    if (startTile.terrain === 14) {
       startGotWater = 1
     }
     if (startTile.food) {
@@ -112,14 +112,16 @@ class App extends Component {
     let speed = player.speed
     let hungerHistory = player.hungerHistory
     let thirstHistory = player.thirstHistory
-    let speedHistory = player.speedHistory
+    let days = player.days
+
+    // let speedHistory = player.speedHistory
     // // place in handleWater() function
     const waterResult = handleWater(player, currentTile, water, gotWater)
     const foodResult = handleFood(player, currentTile, food, gotFood)
     const lifeResult = handleLife(foodResult.food, waterResult.water, life, thirstHistory, hungerHistory)
     const speedResult = handleSpeed(lifeResult.life, speed)
     const eventResult = handleEvents(currentTile, foodResult, waterResult, 5)
-
+    days = days + 1
     console.log(eventResult)
     store.dispatch({
       type: 'NEXT_TURN',
@@ -133,41 +135,51 @@ class App extends Component {
         life: lifeResult.life,
         thirstHistory: lifeResult.thirstHistory,
         hungerHistory: lifeResult.hungerHistory,
-        event: eventResult
+        event: eventResult,
+        days: days,
       }
     })
     // ======== DEATH END GAME CHECK =================
     if (lifeResult.life === 0) {
       alert("Player has died.  Game Over")
       // do more stuff here
+      store.dispatch({
+        type: 'GAME_OVER',
+        payload: {
+          event: GAME_OVER_MESSAGE,
+        }
+      })
     }
   }
-  ZoomIn() {
-    handleZoomIn()
-    console.log('zoom')
-  }
-  ZoomOut() {
-    handleZoomOut()
+
+  refresh() {
+    window.location.reload()
   }
 
   render() {
     const player = store.getState().player
     return (
-      <div>
-        <div className="world-container">
-          <World />
+      <div className="game-container">
+        <div className="wcc">
+          <div className="world-container">
+            <World />
+          </div>
         </div>
-
-        <button onClick={this.onGameStart}>Start Game</button>
-        <button onClick={this.handleNewTurn}>Next Turn</button>
-        <button onClick={this.handleSearch}>Search</button>
-        <button onClick={this.ZoomIn}>+</button>
-        <button onClick={this.ZoomOut}>-</button>
+        <div className="map-buttons">
+          <button onClick={this.onGameStart}>Start Game</button>
+          <button onClick={this.handleNewTurn}>Next Turn</button>
+          <button onClick={this.handleSearch}>Forage</button>
+          <button onClick={this.refresh}>Re-start</button>
+        </div>
         <div className="UI">
-          <VitalsDisplay />
-          <EventsDisplay></EventsDisplay>
+          <div>
+            <VitalsDisplay />
+          </div>
+          <div>
+            <EventsDisplay></EventsDisplay>
+          </div>
         </div>
-      </div>
+      </div >
     )
   }
 }

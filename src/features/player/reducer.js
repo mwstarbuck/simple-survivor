@@ -16,7 +16,8 @@ const initialState = {
     speedHistory: 6,
     currentTerrain: 0,
     lastDirection: '',
-    event: ""
+    event: "",
+    days: 0,
 }
 
 const playerReducer = (state = initialState, action) => {
@@ -42,6 +43,11 @@ const playerReducer = (state = initialState, action) => {
                 ...action.payload,
             }
         case 'END_DAY_EVENT':
+            return {
+                ...state,
+                ...action.payload,
+            }
+        case 'GAME_OVER':
             return {
                 ...state,
                 ...action.payload,
