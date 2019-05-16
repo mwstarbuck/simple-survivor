@@ -3,12 +3,12 @@ export default function handleLife(foodResult, waterResult, life, thirstHistory,
     let thirst = waterResult
     console.log(waterResult)
     //reducing life due to thirst
-    if (thirst === 4 && thirstHistory === 5) {
+    if (thirst === 4 && thirstHistory > thirst) {
         console.log(thirstHistory)
         thirstHistory = thirst
         console.log(thirstHistory)
     }
-    if (thirst === 3 && thirstHistory === 4) {
+    if (thirst === 3 && thirstHistory > thirst) {
         thirstHistory = thirst
         console.log(thirstHistory)
 
@@ -16,36 +16,36 @@ export default function handleLife(foodResult, waterResult, life, thirstHistory,
         console.log(life)
 
     }
-    if (thirst === 2 && thirstHistory === 3) {
+    if (thirst === 2 && thirstHistory > thirst) {
         thirstHistory = thirst
         life -= 2
     }
-    if (thirst === 1 && thirstHistory === 2) {
+    if (thirst === 1 && thirstHistory > thirst) {
         thirstHistory = thirst
         life -= 2
     }
-    if (thirst === 0 && thirstHistory === 1) {
+    if (thirst === 0 && thirstHistory > thirst) {
         thirstHistory = thirst
         life -= 3
     }
     //gaining life due to thirst level
-    if (thirst === 1 && thirstHistory === 0) {
-        thirstHistory = 1
+    if (thirst === 1 && thirstHistory < thirst) {
+        thirstHistory = thirst
         life += 3
     }
-    if (thirst === 2 && thirstHistory === 1) {
-        thirstHistory = 2
-        life -= 2
+    if (thirst === 2 && thirstHistory < thirst) {
+        thirstHistory = thirst
+        life += 2
     }
-    if (thirst === 3 && thirstHistory === 2) {
-        thirstHistory = 3
-        life -= 1
+    if (thirst === 3 && thirstHistory < thirst) {
+        thirstHistory = thirst
+        life += 1
     }
-    if (thirst === 4 && thirstHistory === 3) {
-        thirstHistory = 4
+    if (thirst === 4 && thirstHistory < thirst) {
+        thirstHistory = thirst
     }
-    if (thirst === 5 && thirstHistory === 4) {
-        thirstHistory = 5
+    if (thirst === 5 && thirstHistory < thirst) {
+        thirstHistory = thirst
     }
 
     //reducing life due to hunger
@@ -115,6 +115,14 @@ export default function handleLife(foodResult, waterResult, life, thirstHistory,
     }
     if (hunger === 11 && hungerHistory < hunger) {
         hungerHistory = hunger
+        life++
+    }
+    if (hunger === 12 && hungerHistory === 12 && life === 9)
+        life++
+
+    if (hunger === 12 && hungerHistory < hunger) {
+        hungerHistory = hunger
+        life++
     }
     //check if life less than zero
     if (life < 0) {

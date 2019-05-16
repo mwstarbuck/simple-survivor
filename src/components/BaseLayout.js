@@ -5,10 +5,10 @@ import { Link, NavLink } from 'react-router-dom'
 export class Menu extends Component {
     render() {
         return (
-            <ul className="navBar">
-                <li><NavLink exact to="/home">Simple Surivior</NavLink></li>
-                <li><NavLink exact to="/game">Play Game</NavLink></li>
-                <li><NavLink to="/about">About</NavLink></li>
+            <ul className="menu">
+                <li><NavLink className="menu-link title" exact to="/">Simple Surivior</NavLink></li>
+                <li><NavLink className="menu-link" to="/game">Play Game</NavLink></li>
+                <li><NavLink className="menu-link" to="/about">About</NavLink></li>
             </ul >
         )
     }
@@ -25,10 +25,10 @@ export class Footer extends Component {
 export class BaseLayout extends Component {
     render() {
         return (
-            <div>
+            <div className="game-container">
                 <Menu></Menu>
                 {this.props.children}
-                <Footer></Footer>
+                <Footer className="footer"></Footer>
             </div>
         )
     }

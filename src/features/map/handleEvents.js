@@ -4,7 +4,7 @@ export default function handleEvents(currentTile, foodResult, waterResult, range
     let events = [
         {
             id: 0,
-            choice: true,
+            choice: false,
             life: 0,
             speed: 0,
             gotWater: 0,
@@ -14,7 +14,7 @@ export default function handleEvents(currentTile, foodResult, waterResult, range
         },
         {
             id: 1,
-            choice: true,
+            choice: false,
             life: 0,
             speed: 0,
             gotWater: 0,
