@@ -54,7 +54,7 @@ function placeFood(width, height, array) {
     return array
 }
 
-function createMap(width, height) {
+export default function createMap(width, height) {
     let result = [] //initialize array
     for (let i = 0; i < height; i++) {
         result[i] = [] //initialize inner array
@@ -62,6 +62,7 @@ function createMap(width, height) {
             result[i][j] = { terrain: Math.floor(Math.random() * 15), visible: true, food: false }
             // result[i][j] = Math.floor(Math.random() * 7)
         }
+        console.log('map')
 
     }
     let baseMap = placeBase(width, height, result)
