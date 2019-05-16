@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-export class Splash extends Component {
+export class About extends Component {
     render() {
         return (
-            <h1>SIMPLE SURVIVOR</h1>
+            <h1>How to Play Simple Survivor</h1>
         )
     }
 }

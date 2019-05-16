@@ -13,11 +13,15 @@ import EventsDisplay from './components/EventsDisplay';
 import handleEvents from './features/map/handleEvents'
 import '../src/App.css'
 import handleZoomIn from '../src/features/world/handleZoomIn' //
-import handleZoomOut from './features/world/handleZoomOut'; //==NEW
+import handleZoomOut from './features/world/handleZoomOut';
+import createMap from './data/maps/1/index'
+//==NEW
 
 class App extends Component {
 
   onGameStart() {
+    // createMap(20, 10)
+
     const tiles = store.getState().map.tiles
     const player = store.getState().player
     const oldPos = player.position
