@@ -3,17 +3,58 @@ import { SPRITE_SIZE, NEW_HEIGHT, NEW_WIDTH } from '../../config/constants'
 import { connect } from 'react-redux'
 
 import './styles.css'
+
+// function rollTiles(range) {
+//     return Math.floor(Math.random() * range)
+// }
+
 //get the image for each tile
 function getTileSprite(type) {
+    let num = 0
     switch (true) {
-        case type < 10:
-            return 'grass'
-        case type < 12:
-            return 'rock'
-        case type < 13:
-            return 'tree'  //time: 22:00 in video 2
+        case type === 0:
+            return 'grass-0'
+        case type === 1:
+            return 'grass-1'
+        case type === 2:
+            return 'grass-2'
+        case type === 3:
+            return 'grass-3'
+        case type === 4:
+            return 'grass-4'
+        case type === 5:
+            return 'grass-5'
+        case type === 6:
+            return 'grass-6'
+        case type === 7:
+            return 'grass-7'
+        case type === 8:
+            return 'grass-8'
+        case type === 9:
+            return 'grass-9'
+        case type === 10:
+            return 'rock-0'
+        case type === 11:
+            return 'rock-1'
+        case type === 12:
+            return 'tree-0'
         case type === 13:
-            return 'water'
+            return 'tree-1'
+        case type === 14:
+            return 'water-0'
+
+        // case type < 10:
+        //     num = rollTiles(15)
+        //     return `grass-${num}`
+        // case type < 12:
+        //     num = rollTiles(3)
+        //     return `rock-${num}`
+        // case type < 13:
+        //     num = rollTiles(4)
+        //     return `tree-${num}`
+        // case type === 13:
+        //     num = rollTiles(3)
+        //     return `water-${num}`
         case type === 100:
             return 'base'
     }
@@ -36,11 +77,13 @@ function MapTile(props) {
             style={{
                 height: 120, // =====NEW 
                 width: 80,
+                position: 'relative'
             }}
         >
             {/* ======= test for placing food ========  */}
-            {props.tile.food ? <img src="tiles/food.png"></img> : null}
+            {props.tile.food ? <img className="food-img" src="tiles/food.png"></img> : null}
             {/* ========test done ==================== */}
+
         </div>
     } else {
         return <div
@@ -76,7 +119,7 @@ function Map(props) {
         <div
             style={{
                 position: 'relative',
-                top: '0',
+                top: '20',
                 left: '0',
                 width: '1600px',  // =====NEW 
                 height: '840px', // =====NEW 

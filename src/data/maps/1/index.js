@@ -37,7 +37,7 @@ function placeFood(width, height, array) {
     while (doublePlacement != 0) {
         let x = rollRandom(width)
         let y = rollRandom(height)
-        if (array[y][x].terrain === 13) {
+        if (array[y][x].terrain === 14) {
             array[y][x].food = true
             console.log("food")
             doublePlacement--
@@ -46,7 +46,7 @@ function placeFood(width, height, array) {
     for (let i = 0; i <= num; i++) {
         let x = rollRandom(width)
         let y = rollRandom(height)
-        if (array[y][x].terrain != 13) {
+        if (array[y][x].terrain != 14) {
             array[y][x].food = true
             console.log("food")
         }
@@ -59,7 +59,7 @@ function createMap(width, height) {
     for (let i = 0; i < height; i++) {
         result[i] = [] //initialize inner array
         for (let j = 0; j < width; j++) {
-            result[i][j] = { terrain: Math.floor(Math.random() * 14), visible: true, food: false }
+            result[i][j] = { terrain: Math.floor(Math.random() * 15), visible: true, food: false }
             // result[i][j] = Math.floor(Math.random() * 7)
         }
 

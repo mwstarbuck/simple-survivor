@@ -18,12 +18,12 @@ function World(props) {
         <div
             style={{
                 position: 'relative',
-                width: '800px',
-                height: '400px',
+                width: '1600px',
+                height: '1200px',
                 // minWidth: '800px',
                 // minHeight: '400px',
                 transform: `scale(${props.style.scale}, ${props.style.scale})`,
-                margin: '100 auto',
+                margin: '2opx auto',
             }}
         >
             <Map />

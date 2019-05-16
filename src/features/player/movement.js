@@ -87,16 +87,17 @@ export default function handleMovement(player) {
     //     }
     // }
 
-    function handleSpeedAndMove(speed, nextTile, playerState, direction) {
+    function handleSpeedAndMove(oldSpeed, nextTile, playerState, direction) {
         let gotFood = playerState.gotFood
         let terrain = playerState.currentTerrain
         let lastDirection = playerState.lastDirection
+        let speed = oldSpeed
         switch (true) {
             case nextTile.terrain < 10:
                 if (nextTile.food === true && gotFood === 0) {
                     gotFood++
                 }
-                if (terrain === 13 && lastDirection === direction) {
+                if (terrain === 14 && lastDirection === direction) {
                     return {
                         speed: speed - 3,
                         gotFood: gotFood,
@@ -119,7 +120,7 @@ export default function handleMovement(player) {
                 if (nextTile.food === true) {
                     gotFood++
                 }
-                if (terrain === 13 && lastDirection === direction) {
+                if (terrain === 14 && lastDirection === direction) {
                     return {
                         speed: speed - 5,
                         gotFood: gotFood,
@@ -141,7 +142,7 @@ export default function handleMovement(player) {
                 if (nextTile.food === true) {
                     gotFood++
                 }
-                if (terrain === 13 && lastDirection === direction) {
+                if (terrain === 14 && lastDirection === direction) {
                     return {
                         speed: speed - 4,
                         gotFood: gotFood,
@@ -159,11 +160,11 @@ export default function handleMovement(player) {
                         lastDirection: direction,
                     }
                 }
-            case nextTile.terrain === 13:
+            case nextTile.terrain === 14:
                 if (nextTile.food === true) {
                     gotFood++
                 }
-                if (terrain === 13 && lastDirection === direction) {
+                if (terrain === 14 && lastDirection === direction) {
                     if (playerState.gotWater > 0) {
                         return {
                             speed: speed - 5,
@@ -295,12 +296,12 @@ export default function handleMovement(player) {
             // const eventResults = checkForEvent(100)
 
             //runs observeBoundaries & observeImpassable functions which return BOOL    
-            if (observeImpassable(nextTile) && currentSpeed.speed >= 0) {
+            if (currentSpeed.speed >= 0) {
                 // console.log(oldSpeed) //new
                 // console.log(currentSpeed)
                 //===NEW BELOW
                 const transLoc = spriteTransition(oldPos, direction, playerState.walkIndex)
-                //===NEW BELOW
+                // ===NEW BELOW
                 transitionMove(transLoc, direction, playerState.walkIndex)
                 // dispatchMove(direction, newPos, currentSpeed, nextTile, playerState.walkIndex)
                 //===NEW
