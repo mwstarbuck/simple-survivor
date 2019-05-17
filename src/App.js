@@ -141,7 +141,6 @@ class App extends Component {
     })
     // ======== DEATH END GAME CHECK =================
     if (lifeResult.life === 0) {
-      alert("Player has died.  Game Over")
       // do more stuff here
       store.dispatch({
         type: 'GAME_OVER',
