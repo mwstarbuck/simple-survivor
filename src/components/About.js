@@ -16,7 +16,7 @@ export class About extends Component {
                     <li><u>Life:</u>  ...You start with 10 life points.  When you reach 0 life point you are dead and the game is over.</li>
                     <li><u>Hunger:</u> ...You start with 12 hunger points.  This simulates a number of days you can go without food and still be functional.  The lower you're hunger points the hungrier you are and the more it affects your life.</li>
                     <li><u>Thirst:</u>  ...You start with 5 thirst points. This simulates a number of days you can go without water and still be alive.  The lower you're thirst points the thirstier you are and the more it affects your life. </li>
-                    <li><u>Food:</u>...This a measure of the amount of food you need to forage to maintain your current hunger level. A level of one is </li>
+                    <li><u>Food:</u>...This a measure of the amount of food you need to forage to maintain your current hunger level. A level of one means you have met the days needs.</li>
                     <li><u>Water:</u>  ...This a measure of the amount of food you need to forage to maintain your current hunger level.</li>
                     <li></li>
                 </ul>

@@ -1,68 +1,54 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Simple Survival
 
-## Available Scripts
+Simple Survival is a game about surviving in the outdoors. The rules are based on the game Outdoor Survival fro Avalon Hill.  Outdoor Surv
 
-In the project directory, you can run:
+## Story...
 
-### `npm start`
+You have been out for a week long hike in a remote part of the world. While walking along a ridge you trip over a root and knock yourself unconscious in the process. To make things worse your backpack and gear fall over the ridge 200 feet below. A things often gow, it gets even worse for you.  You awake not knowing waht just happened, who you are, where you are or how you got there. All you have is a pack of matches and will to survive
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+## How to Play
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The Goal...
+Find your way to the ranger base to call for help. Before you lose your life.  Finding food and water are essential to survival with water being of the utmost importance.
 
-### `npm run build`
+## Rules
+Player Info---
+Life:  ...You start with 10 life points.  When you reach 0 life point you are dead and the game is over.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Hunger: ...You start with 12 hunger points.  This simulates a number of days you can go without food and still be functional.  The lower you're hunger points the hungrier you are and the more it affects your life.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Thirst: ...You start with 5 thirst points. This simulates a number of days you can go without water and still be alive.  The lower you're thirst points the thirstier you are and the more it affects your life. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Food: ...This a measure of the amount of food you need to forage to maintain your current hunger level. A level of one means you have met the days needs.
 
-### `npm run eject`
+Water: ...This a measure of the amount of food you need to forage to maintain your current hunger level.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Movement--
+You use movement points to move on the game map.  Each particular type of tile will have a specific movement cost. Movement costs are shown below.  You can also use movement to forage for food by pushing the forage button.  Foraging costs 1 movement point.  Sometimes you will find food ande sometimes not.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Water, Food, Life and Movement
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Effects of thirst on Life:
+You start with 5 thirst points.  The lower this number goes the thirstier you are and the more life you lose.
 
-## Learn More
+You can gain a thirst level back by staing on a wter tile for 3 consecutive days.  This will in turn raise your life.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Effects of hunger on life
+You start with 12 hunger points.  The lower this number goes the hugrier you are and the more life you lose. See the effects on life below.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The loss of life points from hunger and thirst on the same turn are cumulative.  You can gain a thirst level back by staing on a wter tile for 3 consecutive days.  This will in turn raise your life.
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Effects of Life on Movement
 
-### Making a Progressive Web App
+You start with 10 life points.  When you loose life it will cause you to loose movement points.  YOu only have 6 movement point.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Advanced Configuration
+Random Events
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+At the beginning of every turn a random event will occur sometimes benign sometimes bad  soemtimes beneficial
