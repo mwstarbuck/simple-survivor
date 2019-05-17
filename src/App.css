@@ -1,6 +1,6 @@
 .UI {
     display: flex;
-    justify-content: left;
+    justify-content: center;
 }
 .right-UI {
     width: 350px;
@@ -8,9 +8,18 @@
     margin-right: 100px;
 }
 .left-UI {
-    width: 250px;
-    margin-left: 100px;
-  
+    text-align: center;
+    width: 400px;
+    margin-left: 260px;
+}
+.left-UI-inner {
+    display: flex;
+    justify-content: center;
+    
+}
+.f-w-d {
+    margin-left: 250px;
+    border: 2px white;
 }
 .vits {
     margin-bottom: 1em

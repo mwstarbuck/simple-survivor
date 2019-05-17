@@ -25,7 +25,7 @@ body {
   overflow: auto;
   width: 800px;
   height: 400px;
-  /* border: 2px wheat; */
+  /* border-top: 4px wheat; */
   /* margin: 0 50px 10px 50px; */
   align-items: center;
 }
@@ -61,10 +61,6 @@ body {
 .map-buttons > button {
   margin-right: 10px;
 }
-.UI {
-  display: flex;
-  justify-content: center;
-}
 .aboutBox {
-  margin-left: 20px;
+  margin-left: 40px;
 }
