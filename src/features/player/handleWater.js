@@ -24,7 +24,7 @@ export default function handleWater(player, currentTile, water, gotWater) {
         }
     }
 
-    if (gotWater === 4 && water < 5) {
+    if (gotWater >= 4 && water < 5) {
         water++
         gotWater = 1
     }

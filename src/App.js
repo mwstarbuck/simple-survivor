@@ -74,7 +74,7 @@ class App extends Component {
     const tiles = store.getState().map.tiles
     const y = (player.position[1] - 50) / SPRITE_SIZE
     const x = (player.position[0] - 20) / SPRITE_SIZE
-    const currentTile = tiles[y][x]
+    // const currentTile = tiles[y][x]
 
     const skill = player.skill
     let speed = player.speed

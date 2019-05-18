@@ -218,7 +218,7 @@ export default function handleMovement(player) {
                 alert("You have Won!")
 
                 return {
-                    speed: updateSpeed - 1,
+                    speed: null,
                     gotFood: gotFood,
                     gotWater: playerState.gotWater + 1,
                     currentTerrain: nextTile.terrain,

@@ -35,7 +35,7 @@ export const GAME_WON_MESSAGE = {
     gotWater: 0,
     gotFood: 0,
     caption: "You Made It!! You have survived!",
-    event: "The ranger exclaims, 'You look like you need some water and food.  You also need a bath' ",
+    event: "The ranger exclaims, 'You look like you need some water and food.  You also need a bath'  Would you like to play again? ",
 }
 
 export const MOVE_MESSAGE = {
