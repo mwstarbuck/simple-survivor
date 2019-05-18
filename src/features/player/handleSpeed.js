@@ -28,10 +28,10 @@ export default function handleSpeed(life, speed) {
         speed = 2
     }
     if (life === 2) {
-        speed = 1
+        speed = 2
     }
     if (life === 1) {
-        speed = 0
+        speed = 1
     }
     if (life === 0) {
         speed = 0
