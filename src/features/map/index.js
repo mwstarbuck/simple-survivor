@@ -139,7 +139,7 @@ function Map(props) {
 
 function mapStateToProps(state) {
     return {
-        tiles: state.map.tiles
+        ...state.map
     }
 }
 

@@ -326,6 +326,8 @@ export default function handleMovement(player) {
                 }, 200);
                 // dispatchMove(direction, newPos, currentSpeed, nextTile, playerState.walkIndex)
                 console.log(nextTile)
+            } else {
+                alert("You do not have enough movement points to move into this terrain.")
             }
         }
     }

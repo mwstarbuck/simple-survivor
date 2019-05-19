@@ -6,14 +6,25 @@ import { connect } from 'react-redux'
 import { tiles } from '../../data/maps/1'
 import store from '../../config/store'
 
-
+let count = 0
 
 function World(props) {
-    store.dispatch({
-        type: 'ADD_TILES', payload: {
-            tiles: tiles,
-        }
-    })
+
+
+    if (count === 0) {
+        count = count + 1
+        store.dispatch({
+            type: 'ADD_TILES', payload: {
+                tiles: tiles
+            }
+        })
+    } else {
+        store.dispatch({
+            type: 'ADD_TILES', payload: {
+                tiles: props.currentTiles
+            }
+        })
+    }
     return (
         <div
             style={{
@@ -30,11 +41,13 @@ function World(props) {
             <Player />
         </div>
     )
+
 }
 
 function mapStateToProps(state) {
     return {
-        style: state.world
+        style: state.world,
+        currentTiles: state.map.tiles
     }
 }
 
