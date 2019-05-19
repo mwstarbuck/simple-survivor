@@ -18,54 +18,61 @@ import handleMovement from './features/player/movement'
 class App extends Component {
   constructor() {
     super()
+    this.state = {
+      start: false,
+    }
   }
-  onGameStart() {
+  onGameStart = () => {
 
-
-    const tiles = store.getState().map.tiles
-    const player = store.getState().player
-    const oldPos = player.position
-    const y = (oldPos[1] - 50) / SPRITE_SIZE
-    const x = (oldPos[0] - 20) / SPRITE_SIZE
-    const startTile = tiles[y][x]
-    //adjust player starting water and food if necessary
-    let startGotWater = 0
-    let startGotFood = 0
-    if (startTile.terrain === 14) {
-      startGotWater = 1
-    }
-    if (startTile.food) {
-      startGotFood = 1
-    }
-    store.dispatch({
-      type: 'ADJUST_STATS',
-      payload: {
-        gotWater: startGotWater,
-        gotFood: startGotFood,
-        event: GAME_START_MESSAGE,
+    if (this.state.start === false) {
+      this.setState({
+        start: true,
+      })
+      const tiles = store.getState().map.tiles
+      const player = store.getState().player
+      const oldPos = player.position
+      const y = (oldPos[1] - 50) / SPRITE_SIZE
+      const x = (oldPos[0] - 20) / SPRITE_SIZE
+      const startTile = tiles[y][x]
+      //adjust player starting water and food if necessary
+      let startGotWater = 0
+      let startGotFood = 0
+      if (startTile.terrain === 14) {
+        startGotWater = 1
       }
-    })
-
-
-    if (startTile.terrain === 10 || startTile.terrain === 11) {
+      if (startTile.food) {
+        startGotFood = 1
+      }
       store.dispatch({
-        type: 'MOUNTAIN_VIEW',
+        type: 'ADJUST_STATS',
         payload: {
-          y: y,
-          x: x,
-          visible: true
+          gotWater: startGotWater,
+          gotFood: startGotFood,
+          event: GAME_START_MESSAGE,
         }
       })
 
-    } else {
-      store.dispatch({
-        type: 'REVEAL_TILES',
-        payload: {
-          y: y,
-          x: x,
-          visible: true
-        }
-      })
+
+      if (startTile.terrain === 10 || startTile.terrain === 11) {
+        store.dispatch({
+          type: 'MOUNTAIN_VIEW',
+          payload: {
+            y: y,
+            x: x,
+            visible: true
+          }
+        })
+
+      } else {
+        store.dispatch({
+          type: 'REVEAL_TILES',
+          payload: {
+            y: y,
+            x: x,
+            visible: true
+          }
+        })
+      }
     }
   }
 
@@ -161,7 +168,7 @@ class App extends Component {
       <div className="game-container">
         <div className="wcc">
           <div className="world-container">
-            <World />
+            <World tiles={store.getState().map.tiles} />
           </div>
         </div>
         <div className="map-buttons">

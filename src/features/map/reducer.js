@@ -1,7 +1,6 @@
 
 const initialState = {
     tiles: [],
-    currentTile: {}
 }
 
 function findAllVisible(state, action, tile, i, j, x) {
@@ -52,6 +51,7 @@ const mapReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_TILES':
             return {
+                ...state,
                 ...action.payload,
             }
         case 'REVEAL_TILES':
