@@ -27,7 +27,7 @@ Food: ...This a measure of the amount of food you need to forage to maintain you
 Water: ...This a measure of the amount of food you need to forage to maintain your current hunger level.
 
 Movement--
-You use movement points to move on the game map.  Each particular type of tile will have a specific movement cost. Movement costs are shown below.  You can also use movement to forage for food by pushing the forage button.  Foraging costs 1 movement point.  Sometimes you will find food ande sometimes not.
+Use the arrow keys to move the player.  You use movement points to move on the game map.  Each particular type of tile will have a specific movement cost. Movement costs are shown below.  You can also use movement to forage for food by pushing the forage button.  Foraging costs 1 movement point.  Sometimes you will find food ande sometimes not.
 
 ## Water, Food, Life and Movement
 
