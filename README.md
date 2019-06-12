@@ -6,7 +6,7 @@ Simple Survival is a game about surviving in the outdoors. The rules are based o
 
 You have been out for a week long hike in a remote part of the world. While walking along a ridge you trip over a root and knock yourself unconscious in the process. To make things worse your backpack and gear fall over the ridge 200 feet below. A things often gow, it gets even worse for you.  You awake not knowing waht just happened, who you are, where you are or how you got there. All you have is a pack of matches and will to survive
 
-play at <a>https://morning-bayou-87672.herokuapp.com</a>
+play at <a>https://simple-survivor.herokuapp.com/</a>
 
 
 ## How to Play
