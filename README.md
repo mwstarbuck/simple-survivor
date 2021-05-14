@@ -16,11 +16,11 @@ Find your way to the ranger base to call for help. Before you lose your life.  F
 
 ## Rules
 Player Info---
-Life:  ...You start with 10 life points.  When you reach 0 life point you are dead and the game is over.
+Life:  ...You start with 10 life points.  When you reach 0 life points, you are dead and the game is over.
 
-Hunger: ...You start with 12 hunger points.  This simulates a number of days you can go without food and still be functional.  The lower you're hunger points the hungrier you are and the more it affects your life.
+Hunger: ...You start with 12 hunger points.  This simulates a number of days you can go without food and still be functional.  The lower your hunger points the hungrier you are and the more it affects your life.
 
-Thirst: ...You start with 5 thirst points. This simulates a number of days you can go without water and still be alive.  The lower you're thirst points the thirstier you are and the more it affects your life. 
+Thirst: ...You start with 5 thirst points. This simulates a number of days you can go without water and still be alive.  The lower your thirst points the thirstier you are and the more it affects your life. 
 
 Food: ...This a measure of the amount of food you need to forage to maintain your current hunger level. A level of one means you have met the days needs.
 
@@ -47,7 +47,7 @@ The loss of life points from hunger and thirst on the same turn are cumulative. 
 
 Effects of Life on Movement
 
-You start with 10 life points.  When you loose life it will cause you to loose movement points.  YOu only have 6 movement point.
+You start with 10 life points.  When you loose life it will cause you to loose movement points.  You only have 6 movement points.
 
 
 Random Events
